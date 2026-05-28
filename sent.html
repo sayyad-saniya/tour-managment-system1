@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Travel Website - Signup</title>
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- EmailJS Script -->
+  <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <script>
+    (function () {
+      emailjs.init("YOUR_PUBLIC_KEY"); // 🔁 Replace with your actual public key
+    })();
+  </script>
+
+  <style>
+    /* Simple styling for signup form */
+    body {
+      font-family: Arial, sans-serif;
+      background: #f3f3f3;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #2d6cdf;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    #signup {
+      max-width: 400px;
+      margin: 50px auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    #signup h2 {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    #signup input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    #signup button {
+      width: 100%;
+      padding: 10px;
+      background-color: #2d6cdf;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    #signup button:hover {
+      background-color: #1a4ca3;
+    }
+
+    #signupNotification {
+      margin-top: 10px;
+      text-align: center;
+      color: green;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Welcome to WanderWise</h1>
+    <p>Your Gateway to Adventure</p>
+  </header>
+
+  <section id="signup">
+    <h2>Create Your Account</h2>
+    <form onsubmit="return sendSignupEmail()">
+      <input type="text" id="signupName" placeholder="Your Name" required />
+      <input type="email" id="signupEmail" placeholder="Your Email" required />
+      <input type="password" id="signupPassword" placeholder="Password" required />
+      <button type="submit">Sign Up</button>
+    </form>
+    <div id="signupNotification"></div>
+  </section>
+
+  <script>
+    function sendSignupEmail() {
+      const name = document.getElementById("signupName").value;
+      const email = document.getElementById("signupEmail").value;
+
+      const params = {
+        user_name: name,
+        user_email: email,
+        custom_message: "Thanks for signing up at WanderWise!",
+      };
+
+      emailjs
+        .send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", params) // 🔁 Replace these too
+        .then((response) => {
+          console.log("SUCCESS!", response.status, response.text);
+          document.getElementById("signupNotification").textContent =
+            "✅ Account created! Confirmation email sent.";
+        })
+        .catch((error) => {
+          console.error("FAILED...", error);
+          document.getElementById("signupNotification").textContent =
+            "❌ There was an error sending the email.";
+        });
+
+      return false; // Prevent page reload
+    }
+  </script>
+</body>
+</html>

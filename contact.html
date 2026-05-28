@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Travel Website</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://kit.fontawesome.com/6558443b63.js" crossorigin="anonymous"></script>
+    <style>
+      .user-email-display {
+        color: #fff;
+        font-weight: bold;
+        margin-left: 20px;
+        font-size: 16px;
+      }
+      .destination-item,
+      .hotel-item,
+      .activity-item {
+        cursor: pointer;
+      }
+      .modal {
+        display: none;
+        position: fixed;
+        top: 20%;
+        left: 30%;
+        background: white;
+        padding: 20px;
+        border: 2px solid #ccc;
+        z-index: 1000;
+        width: 40%;
+      }
+      .modal h3 {
+        margin-top: 0;
+      }
+      .logout-button {
+        background-color: #ff4d4d;
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        cursor: pointer;
+        border-radius: 4px;
+        font-size: 14px;
+        margin-left: 10px;
+      }
+      .user-controls {
+        display: flex;
+        align-items: center;
+      }
+      #contact {
+        padding: 40px;
+        background-color: #f9f9f9;
+      }
+      #contact form {
+        max-width: 500px;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+      #contact input, #contact textarea {
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+      #contact button {
+        padding: 10px;
+        background-color: #007BFF;
+        color: white;
+        font-size: 16px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      #notification {
+        text-align: center;
+        color: green;
+        font-weight: bold;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <a href="#"><img src="images/logo.jpg" alt="Travel Company Logo" /></a>
+      </div>
+      <div class="user-controls">
+        <div id="userEmailDisplay" class="user-email-display"></div>
+        <button id="logoutBtn" class="logout-button" style="display: none;" onclick="handleLogout()">Logout</button>
+      </div>
+      <nav class="nav-menu">
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#destinations">Destinations</a></li>
+          <li><a href="#hotels">Hotels</a></li>
+          <li><a href="#activities">Activities</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <!-- other sections -->
+
+      <section id="contact">
+        <h2>Contact Us</h2>
+        <form onsubmit="return sendMessage()">
+          <input type="text" id="contactName" placeholder="Your Name" required />
+          <input type="email" id="contactEmail" placeholder="Your Email" required />
+          <textarea id="contactMessage" rows="5" placeholder="Your Message" required></textarea>
+          <button type="submit">Send Message</button>
+        </form>
+        <div id="notification"></div>
+      </section>
+
+      <!-- existing modals and scripts -->
+
+      <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+
+        function openLoginModal() {
+          document.getElementById("loginModal").style.display = "block";
+        }
+
+        function closeLoginModal() {
+          document.getElementById("loginModal").style.display = "none";
+        }
+
+        function handleLogin() {
+          const email = document.getElementById("loginEmail").value;
+          const password = document.getElementById("loginPassword").value;
+
+          if (!email || !password) {
+            alert("Please enter email and password.");
+            return false;
+          }
+
+          localStorage.setItem("loggedInUser", email);
+          showLoggedInEmail(email);
+          alert("Login successful!");
+          console.log("Logged in user email:", email);
+          closeLoginModal();
+          return false;
+        }
+
+        function showLoggedInEmail(email) {
+          const display = document.getElementById("userEmailDisplay");
+          const logoutBtn = document.getElementById("logoutBtn");
+          display.textContent = `Logged in as: ${email}`;
+          logoutBtn.style.display = "inline-block";
+        }
+
+        function handleLogout() {
+          localStorage.removeItem("loggedInUser");
+          const display = document.getElementById("userEmailDisplay");
+          const logoutBtn = document.getElementById("logoutBtn");
+          display.textContent = "";
+          logoutBtn.style.display = "none";
+          alert("Logged out successfully.");
+        }
+
+        window.onload = function () {
+          const email = localStorage.getItem("loggedInUser");
+          if (email) {
+            showLoggedInEmail(email);
+          }
+        };
+
+        function showDetail(title, text) {
+          document.getElementById("detailTitle").textContent = title;
+          document.getElementById("detailText").textContent = text;
+          document.getElementById("detailModal").style.display = "block";
+        }
+
+        function closeDetailModal() {
+          document.getElementById("detailModal").style.display = "none";
+        }
+
+        function sendMessage() {
+          const name = document.getElementById("contactName").value;
+          const email = document.getElementById("contactEmail").value;
+          const message = document.getElementById("contactMessage").value;
+
+          if (!name || !email || !message) {
+            alert("All fields are required.");
+            return false;
+          }
+
+          // Simulate sending message and notification
+          console.log(`Message from ${name} (${email}): ${message}`);
+
+          document.getElementById("notification").textContent = "Your message has been sent! We will get back to you soon.";
+          document.getElementById("contactName").value = "";
+          document.getElementById("contactEmail").value = "";
+          document.getElementById("contactMessage").value = "";
+
+          return false;
+        }
+      </script>
+    </main>
+  </body>
+</html>

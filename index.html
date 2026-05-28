@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Travel Website</title>
+    <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://kit.fontawesome.com/6558443b63.js"
+      crossorigin="anonymous"
+      
+    ></script>
+    <style>
+      body { font-family: Arial, sans-serif; text-align: center; }
+      canvas { border: 2px solid black; margin-top: 20px; }
+      #controls { margin-top: 10px; }
+      header{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+      }
+      header img{
+        width: 100px;
+        height: auto;
+        margin-right: 20px;
+      }
+      .heada{
+        text-align: center;
+        flex-grow: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <img src = "logo.png">
+      <div class="heada">
+      <p class="head1">KJ's Educational Institutes</p>
+      <p class="head2">Trinity College of Engineering and Research</p>
+      </div>
+    </header>
+    <style>
+      /* Modal Styling */
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 9999;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.6);
+      }
+
+      .modal-content {
+        background-color: #fff;
+        margin: 10% auto;
+        padding: 2rem;
+        border: 1px solid #888;
+        width: 90%;
+        max-width: 400px;
+        border-radius: 10px;
+        position: relative;
+      }
+
+      .close-btn {
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        color: #aaa;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+      .close-btn:hover {
+        color: black;
+      }
+
+      .modal-links {
+        margin-top: 1rem;
+        text-align: center;
+      }
+
+      .modal-links a {
+        color: #007bff;
+        text-decoration: none;
+      }
+
+      .modal-links a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <a href="#"><img src="images/logo.jpg" alt="Travel Company Logo" /></a>
+      </div>
+      <nav class="nav-menu">
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#destinations">Destinations</a></li>
+          <li><a href="#hotels">Hotels</a></li>
+          <li><a href="#activities">Activities</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Hero -->
+      <section class="hero">
+        <div class="hero-image">
+          <img src="images/hero.jpg" alt="Beautiful travel scenery" />
+        </div>
+        <div class="hero-content">
+          <h1>Welcome to Our Travel Website</h1>
+          <p>Discover amazing destinations and book your next trip with us.</p>
+          <a href="#" class="hero-button" onclick="openLoginModal()">Book Now</a>
+        </div>
+      </section>
+
+      <!-- Destinations -->
+      <section id="destinations" class="destinations">
+        <h2>Popular Destinations</h2>
+        <div class="destination-grid">
+          <div class="destination-item">
+            <img src="images/destination-1.jpg" alt="New York City Skyline" />
+            <h3>New York City</h3>
+            <p>
+              Visit the city that never sleeps and discover its iconic landmarks, world-class museums, and diverse neighborhoods.
+            </p>
+          </div>
+          <div class="destination-item">
+            <img src="images/destination-2.jpg" alt="Eiffel Tower in Paris" />
+            <h3>Paris</h3>
+            <p>
+              Experience the romance and culture of the City of Lights, from the Eiffel Tower to the Louvre Museum.
+            </p>
+          </div>
+          <div class="destination-item">
+            <img src="images/destination-3.jpg" alt="Tokyo street at night" />
+            <h3>Tokyo</h3>
+            <p>
+              Explore the vibrant city of Tokyo and immerse yourself in its unique blend of ancient traditions and modern technology.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Hotels -->
+      <section id="hotels" class="destinations">
+        <h2>Featured Hotels</h2>
+        <div class="destination-grid">
+          <div class="destination-item">
+            <img src="images/hotel-1.jpg" alt="The Ritz Carlton Hotel" />
+            <h3>The Ritz Carlton</h3>
+            <p>
+              Experience luxury accommodations and impeccable service at The Ritz Carlton, located in the heart of the city.
+            </p>
+          </div>
+          <div class="destination-item">
+            <img src="images/hotel-2.jpg" alt="The Four Seasons Hotel" />
+            <h3>The Four Seasons</h3>
+            <p>
+              Relax in style at The Four Seasons, featuring breathtaking views, an award-winning spa, and gourmet dining options.
+            </p>
+          </div>
+          <div class="destination-item">
+            <img src="images/hotel-3.jpg" alt="The Waldorf Astoria Hotel" />
+            <h3>The Waldorf Astoria</h3>
+            <p>
+              Indulge in luxury at The Waldorf Astoria, a historic landmark hotel renowned for its elegance and sophistication.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Activities -->
+      <section id="activities" class="destinations">
+        <h2>Featured Activities</h2>
+        <div class="destination-grid">
+          <div class="destination-item">
+            <img src="images/activity-1.jpg" alt="Snorkeling in clear blue water" />
+            <h3>Snorkeling Adventure</h3>
+            <p>
+              Dive into crystal-clear waters and explore colorful marine life with our guided snorkeling tours.
+            </p>
+          </div>
+          <div class="destination-item">
+            <img src="images/activity-2.jpg" alt="Mountain hiking trail" />
+            <h3>Mountain Hiking</h3>
+            <p>
+              Embark on a scenic hike through breathtaking landscapes and enjoy nature at its finest.
+            </p>
+          </div>
+          <div class="destination-item">
+            <img src="images/activity-3.jpg" alt="City cycling tour" />
+            <h3>City Cycling Tours</h3>
+            <p>
+              Discover the charm of the city on two wheels with our guided bike tours covering iconic sights.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- About -->
+      <section id="about" class="about">
+        <h2>About Us</h2>
+        <p>
+          Our company is dedicated to providing the best travel experiences to our customers. We specialize in creating custom itineraries that cater to each individual's interests and preferences.
+        </p>
+        <div class="team-members">
+          <div class="team-member">
+            <img src="images/team-member-1.jpg" alt="John Smith" />
+            <h4>John Smith</h4>
+            <p>Founder & CEO</p>
+          </div>
+          <div class="team-member">
+            <img src="images/team-member-2.jpg" alt="Jane Doe" />
+            <h4>Jane Doe</h4>
+            <p>Head of Operations</p>
+          </div>
+          <div class="team-member">
+            <img src="images/team-member-3.jpg" alt="David Lee" />
+            <h4>David Lee</h4>
+            <p>Marketing Director</p>
+          </div>
+        </div>
+      </section>
+      
+
+      <!-- Contact 
+      <section id="contact" class="contact">
+        <h2>Contact Us</h2>
+        <div class="contact-info">
+          <p>
+            If you have any questions or would like to book a trip, please fill out the form below or contact us using the information provided.
+          </p>
+          <ul>
+            <li><i class="fas fa-map-marker-alt"></i> 123 Main St, Anytown USA</li>
+            <li><i class="fas fa-envelope"></i> <a href="mailto:info@travelcompany.com">info@travelcompany.com</a></li>
+            <li><i class="fas fa-phone-alt"></i> <a href="tel:555-123-4567">555-123-4567</a></li>
+          </ul>
+        </div>
+        <form action="#" class="form">
+          <div class="form-group">
+            <input type="text" name="name" id="name" placeholder="Enter Your Name" />
+          </div>
+          <div class="form-group">
+            <input type="email" name="email" id="email" placeholder="Enter Your Email" />
+          </div>
+          <div class="form-group">
+            <textarea name="message" id="textarea" cols="30" rows="10" placeholder="Message"></textarea>
+          </div>
+          <button type="submit">Send Message</button>
+        </form>
+      </section>
+    </main> -->
+    <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Travel Website</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://kit.fontawesome.com/6558443b63.js" crossorigin="anonymous"></script>
+    <style>
+      .user-email-display {
+        color: #fff;
+        font-weight: bold;
+        margin-left: 20px;
+        font-size: 16px;
+      }
+      .destination-item,
+      .hotel-item,
+      .activity-item {
+        cursor: pointer;
+      }
+      .modal {
+        display: none;
+        position: fixed;
+        top: 20%;
+        left: 30%;
+        background: white;
+        padding: 20px;
+        border: 2px solid #ccc;
+        z-index: 1000;
+        width: 40%;
+      }
+      .modal h3 {
+        margin-top: 0;
+      }
+      .logout-button {
+        background-color: #ff4d4d;
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        cursor: pointer;
+        border-radius: 4px;
+        font-size: 14px;
+        margin-left: 10px;
+      }
+      .user-controls {
+        display: flex;
+        align-items: center;
+      }
+      #contact {
+        padding: 40px;
+        background-color: #f9f9f9;
+      }
+      #contact form {
+        max-width: 500px;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+      #contact input, #contact textarea {
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+      #contact button {
+        padding: 10px;
+        background-color: #007BFF;
+        color: white;
+        font-size: 16px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      #notification {
+        text-align: center;
+        color: green;
+        font-weight: bold;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <a href="#"><img src="images/logo.jpg" alt="Travel Company Logo" /></a>
+      </div>
+      <div class="user-controls">
+        <div id="userEmailDisplay" class="user-email-display"></div>
+        <button id="logoutBtn" class="logout-button" style="display: none;" onclick="handleLogout()">Logout</button>
+      </div>
+      <nav class="nav-menu">
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#destinations">Destinations</a></li>
+          <li><a href="#hotels">Hotels</a></li>
+          <li><a href="#activities">Activities</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <script>
+  function sendMessage() {
+    const name = document.getElementById("contactName").value;
+    const email = document.getElementById("contactEmail").value;
+    const message = document.getElementById("contactMessage").value;
+
+    if (!name || !email || !message) {
+      alert("All fields are required.");
+      return false;
+    }
+
+    const params = {
+      user_name: name,
+      user_email: email,
+      message: message,
+    };
+
+    emailjs
+      .send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", params) // 🔁 Replace with your actual IDs
+      .then(function (response) {
+        console.log("SUCCESS!", response.status, response.text);
+        document.getElementById("notification").textContent =
+          "Your message has been sent! We will get back to you soon.";
+        document.getElementById("contactName").value = "";
+        document.getElementById("contactEmail").value = "";
+        document.getElementById("contactMessage").value = "";
+      })
+      .catch(function (error) {
+        console.log("FAILED...", error);
+        document.getElementById("notification").textContent =
+          "There was an error sending your message.";
+      });
+
+    return false; // prevent form reload
+  }
+  
+</script>
+<script>
+  function sendMessage() {
+    const name = document.getElementById("contactName").value;
+    const email = document.getElementById("contactEmail").value;
+    const message = document.getElementById("contactMessage").value;
+
+    if (!name || !email || !message) {
+      alert("All fields are required.");
+      return false;
+    }
+
+    const params = {
+      user_name: name,
+      user_email: email,
+      message: message,
+    };
+
+    emailjs
+      .send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", params) // 🔁 Replace with your actual IDs
+      .then(function (response) {
+        console.log("SUCCESS!", response.status, response.text);
+        document.getElementById("notification").textContent =
+          "Your message has been sent! We will get back to you soon.";
+        document.getElementById("contactName").value = "";
+        document.getElementById("contactEmail").value = "";
+        document.getElementById("contactMessage").value = "";
+      })
+      .catch(function (error) {
+        console.log("FAILED...", error);
+        document.getElementById("notification").textContent =
+          "There was an error sending your message.";
+      });
+
+    return false; // prevent form reload
+  }
+</script>
+
+      
+      </nav>
+    </header>
+    <!-- Add in <head> -->
+<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<script>
+  (function () {
+    emailjs.init("YOUR_PUBLIC_KEY"); // 🔁 Replace with your EmailJS public key
+  })();
+</script>
+
+
+    <main>
+      <!-- other sections -->
+
+      <section id="contact">
+        <h2>Contact Us</h2>
+        <form onsubmit="return sendMessage()">
+          <input type="text" id="contactName" placeholder="Your Name" required />
+          <input type="email" id="contactEmail" placeholder="Your Email" required />
+          <textarea id="contactMessage" rows="5" placeholder="Your Message" required></textarea>
+          <button type="submit">Send Message</button>
+        </form>
+        <div id="notification"></div>
+      </section>
+
+      <!-- existing modals and scripts -->
+
+      <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+
+        function openLoginModal() {
+          document.getElementById("loginModal").style.display = "block";
+        }
+
+        function closeLoginModal() {
+          document.getElementById("loginModal").style.display = "none";
+        }
+
+        function handleLogin() {
+          const email = document.getElementById("loginEmail").value;
+          const password = document.getElementById("loginPassword").value;
+
+          if (!email || !password) {
+            alert("Please enter email and password.");
+            return false;
+          }
+
+          localStorage.setItem("loggedInUser", email);
+          showLoggedInEmail(email);
+          alert("Login successful!");
+          console.log("Logged in user email:", email);
+          closeLoginModal();
+          return false;
+        }
+
+        function showLoggedInEmail(email) {
+          const display = document.getElementById("userEmailDisplay");
+          const logoutBtn = document.getElementById("logoutBtn");
+          display.textContent = `Logged in as: ${email}`;
+          logoutBtn.style.display = "inline-block";
+        }
+
+        function handleLogout() {
+          localStorage.removeItem("loggedInUser");
+          const display = document.getElementById("userEmailDisplay");
+          const logoutBtn = document.getElementById("logoutBtn");
+          display.textContent = "";
+          logoutBtn.style.display = "none";
+          alert("Logged out successfully.");
+        }
+
+        window.onload = function () {
+          const email = localStorage.getItem("loggedInUser");
+          if (email) {
+            showLoggedInEmail(email);
+          }
+        };
+
+        function showDetail(title, text) {
+          document.getElementById("detailTitle").textContent = title;
+          document.getElementById("detailText").textContent = text;
+          document.getElementById("detailModal").style.display = "block";
+        }
+
+        function closeDetailModal() {
+          document.getElementById("detailModal").style.display = "none";
+        }
+
+        function sendMessage() {
+          const name = document.getElementById("contactName").value;
+          const email = document.getElementById("contactEmail").value;
+          const message = document.getElementById("contactMessage").value;
+
+          if (!name || !email || !message) {
+            alert("All fields are required.");
+            return false;
+          }
+
+          // Simulate sending message and notification
+          console.log(`Message from ${name} (${email}): ${message}`);
+
+          document.getElementById("notification").textContent = "Your message has been sent! We will get back to you soon.";
+          document.getElementById("contactName").value = "";
+          document.getElementById("contactEmail").value = "";
+          document.getElementById("contactMessage").value = "";
+
+          return false;
+        }
+      </script>
+    </main>
+  </body>
+</html>
+
+
+
+
+    <!-- Footer -->
+    <footer>
+      <div class="social-icons">
+        <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a>
+        <a href="https://www.twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+      </div>
+      <p>&copy; <span id="year"></span> Your Travel Website. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+      <div class="modal-content">
+        <span class="close-btn" onclick="closeLoginModal()">&times;</span>
+        <h2>Login</h2>
+        <form onsubmit="return handleLogin()">
+          <div class="form-group">
+            <input type="email" id="loginEmail" placeholder="Email" required />
+          </div>
+          <div class="form-group">
+            <input type="password" id="loginPassword" placeholder="Password" required />
+          </div>
+          <button type="submit">Login</button>
+          <p class="modal-links">
+            <a href="signup.html">Create Account</a> |
+            <a href="forgot-password.html">Forgot Password?</a>
+          </p>
+        </form>
+      </div>
+    </div>
+
+
+
+    <!-- JS Scripts -->
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      function openLoginModal() {
+        document.getElementById("loginModal").style.display = "block";
+      }
+
+      function closeLoginModal() {
+        document.getElementById("loginModal").style.display = "none";
+      }
+
+      function handleLogin() {
+        const email = document.getElementById("loginEmail").value;
+        const password = document.getElementById("loginPassword").value;
+
+        if (!email || !password) {
+          alert("Please enter email and password.");
+          return false;
+        }
+
+        alert("Login successful (demo only)");
+        closeLoginModal();
+        return false;
+      }
+
+      window.onclick = function (event) {
+        const modal = document.getElementById("loginModal");
+        if (event.target === modal) {
+          modal.style.display = "none";
+        }
+      };
+      
+    </script>
+  </body>
+</html>

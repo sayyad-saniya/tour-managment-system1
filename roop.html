@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Travel Website</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://kit.fontawesome.com/6558443b63.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <script>
+    (function () {
+      emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your actual EmailJS public key
+    })();
+  </script>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    .user-email-display {
+      color: #fff;
+      font-weight: bold;
+      margin-left: 20px;
+      font-size: 16px;
+    }
+
+    .logout-button {
+      background-color: #ff4d4d;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      cursor: pointer;
+      border-radius: 4px;
+      font-size: 14px;
+      margin-left: 10px;
+    }
+
+    .user-controls {
+      display: flex;
+      align-items: center;
+    }
+
+    #contact {
+      padding: 40px;
+      background-color: #f9f9f9;
+    }
+
+    #contact form {
+      max-width: 500px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    #contact input, #contact textarea {
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    #contact button {
+      padding: 10px;
+      background-color: #007BFF;
+      color: white;
+      font-size: 16px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    #notification {
+      text-align: center;
+      color: green;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      <a href="#"><img src="images/logo.jpg" alt="Travel Company Logo" /></a>
+    </div>
+    <div class="user-controls">
+      <div id="userEmailDisplay" class="user-email-display"></div>
+      <button id="logoutBtn" class="logout-button" style="display: none;" onclick="handleLogout()">Logout</button>
+    </div>
+    <nav class="nav-menu">
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#destinations">Destinations</a></li>
+        <li><a href="#hotels">Hotels</a></li>
+        <li><a href="#activities">Activities</a></li>
+        <li><a href="#" onclick="openContact(); return false;">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Other sections go here -->
+
+    <!-- Contact Us -->
+    <section id="contact">
+      <h2>Contact Us</h2>
+      <form onsubmit="return sendMessage()">
+        <input type="text" id="contactName" placeholder="Your Name" required />
+        <input type="email" id="contactEmail" placeholder="Your Email" required />
+        <textarea id="contactMessage" rows="5" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+      <div id="notification"></div>
+    </section>
+  </main>
+
+  <script>
+    function showLoggedInEmail(email) {
+      const display = document.getElementById("userEmailDisplay");
+      const logoutBtn = document.getElementById("logoutBtn");
+      display.textContent = `Logged in as: ${email}`;
+      logoutBtn.style.display = "inline-block";
+    }
+
+    function handleLogout() {
+      localStorage.removeItem("loggedInUser");
+      const display = document.getElementById("userEmailDisplay");
+      const logoutBtn = document.getElementById("logoutBtn");
+      display.textContent = "";
+      logoutBtn.style.display = "none";
+      alert("Logged out successfully.");
+    }
+
+    window.onload = function () {
+      const email = localStorage.getItem("loggedInUser");
+      if (email) {
+        showLoggedInEmail(email);
+      }
+    };
+
+    function sendMessage() {
+      const name = document.getElementById("contactName").value;
+      const email = document.getElementById("contactEmail").value;
+      const message = document.getElementById("contactMessage").value;
+
+      if (!name || !email || !message) {
+        alert("All fields are required.");
+        return false;
+      }
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        alert("Please enter a valid email address.");
+        return false;
+      }
+
+      const templateParams = {
+        from_name: name,
+        from_email: email,
+        message: message,
+      };
+
+      emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", templateParams)
+        .then(function (response) {
+          const notification = document.getElementById("notification");
+          notification.style.color = "green";
+          notification.textContent = "Message sent successfully!";
+          document.getElementById("contactName").value = "";
+          document.getElementById("contactEmail").value = "";
+          document.getElementById("contactMessage").value = "";
+        }, function (error) {
+          const notification = document.getElementById("notification");
+          notification.style.color = "red";
+          notification.textContent = "Failed to send message. Please try again.";
+          console.error("EmailJS error:", error);
+        });
+
+      return false;
+    }
+
+    function openContact() {
+      const contactSection = document.getElementById("contact");
+      contactSection.scrollIntoView({ behavior: "smooth" });
+      contactSection.style.transition = "box-shadow 0.3s ease";
+      contactSection.style.boxShadow = "0 0 10px rgba(0, 123, 255, 0.5)";
+
+      setTimeout(() => {
+        contactSection.style.boxShadow = "none";
+      }, 1000);
+    }
+  </script>
+
+</body>
+</html>

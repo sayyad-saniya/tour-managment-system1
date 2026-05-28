@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Travel Website</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://kit.fontawesome.com/6558443b63.js" crossorigin="anonymous"></script>
+    
+    <!-- ✅ EmailJS Script -->
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script>
+      (function () {
+        emailjs.init("YOUR_PUBLIC_KEY"); // 🔁 Replace with your EmailJS public key
+      })();
+    </script>
+
+    <style>
+      /* Your styles (same as before) */
+    </style>
+  </head>
+  <body>
+    <header>
+      <!-- Header content -->
+    </header>
+
+    <main>
+      <!-- other sections -->
+
+      <section id="contact">
+        <h2>Contact Us</h2>
+        <form onsubmit="return sendMessage()">
+          <input type="text" id="contactName" placeholder="Your Name" required />
+          <input type="email" id="contactEmail" placeholder="Your Email" required />
+          <textarea id="contactMessage" rows="5" placeholder="Your Message" required></textarea>
+          <button type="submit">Send Message</button>
+        </form>
+        <div id="notification"></div>
+      </section>
+
+      <!-- other content -->
+
+      <script>
+        // All your other JS code...
+
+        // ✅ Contact Form Submission
+        function sendMessage() {
+          const name = document.getElementById("contactName").value;
+          const email = document.getElementById("contactEmail").value;
+          const message = document.getElementById("contactMessage").value;
+
+          if (!name || !email || !message) {
+            alert("All fields are required.");
+            return false;
+          }
+
+          const params = {
+            user_name: name,
+            user_email: email,
+            message: message,
+          };
+
+          emailjs
+            .send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", params) // 🔁 Replace these
+            .then(function (response) {
+              console.log("SUCCESS!", response.status, response.text);
+              document.getElementById("notification").textContent =
+                "Your message has been sent! We will get back to you soon.";
+              document.getElementById("contactName").value = "";
+              document.getElementById("contactEmail").value = "";
+              document.getElementById("contactMessage").value = "";
+            })
+            .catch(function (error) {
+              console.log("FAILED...", error);
+              document.getElementById("notification").textContent =
+                "There was an error sending your message.";
+            });
+            emailjs.init("KJxM9EXAMPLE5we0"); // Your real public key
+
+emailjs.send("service_12abcde", "template_xyz123", {
+  user_name: name,
+  user_email: email,
+  message: message,
+})
+
+
+          return false;
+        }
+      </script>
+    </main>
+  </body>
+</html>
